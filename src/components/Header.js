@@ -39,6 +39,10 @@ export default function Header(props) {
         props.loadProblem(String(event.target.value));
     };
 
+    const resetGame = () => {
+        props.loadProblem(problem);
+    }
+
     const problemList = props.problemList.map(p => <MenuItem value={p}>{p}</MenuItem>)
     return (
         <div className={classes.headerHolder}>
@@ -63,7 +67,7 @@ export default function Header(props) {
                 <Button className={classes.button} variant="contained" size="small">
                     Auto Complete
                 </Button>
-                <Button className={classes.button} variant="contained" size="small">
+                <Button className={classes.button} onClick={resetGame} variant="contained" size="small">
                     Reset Game
                 </Button>
             </div>

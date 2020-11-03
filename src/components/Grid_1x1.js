@@ -1,5 +1,26 @@
+import { Component } from "react";
 import "./Grid.css"
-//TODO
+
+const solid = '1.5px solid #999';
+const trans = '1.5px solid transparent';
+
+export default class Grid_1x1 extends Component {
+  render() {
+    const gridStyle = {
+      color: (this.props.selectedGrid.row_index === this.props.row_index && this.props.selectedGrid.col_index === this.props.col_index) || this.props.conflicted ? "#FFF" : this.props.fixed ? "#666" : "#6CC",
+      backgroundColor: this.props.selectedGrid.row_index === this.props.row_index && this.props.selectedGrid.col_index === this.props.col_index ? "#333" : this.props.conflicted ? "#E77" : "#FFF",
+      borderTop: this.props.row_index % 3 === 0 ? trans : solid,
+      borderBottom: this.props.row_index % 3 === 2 ? trans : solid,
+      borderLeft: this.props.col_index % 3 === 0 ? trans : solid,
+      borderRight: this.props.col_index % 3 === 2 ? trans : solid,
+    };
+    return (
+      <div className="grid_1x1" id={`grid-${this.props.row_index}*${this.props.col_index}`} tabIndex="1" style={gridStyle} onClick={() => this.props.handle_grid_1x1_click(this.props.row_index, this.props.col_index)}>
+        { this.props.value === "0" ? "" : this.props.value}
+      </div>
+    );
+  }
+}
 
 // Useful hints:
 // for React Component:
